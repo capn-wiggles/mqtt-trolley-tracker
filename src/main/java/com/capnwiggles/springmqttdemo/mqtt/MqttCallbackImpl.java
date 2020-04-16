@@ -24,7 +24,7 @@ public class MqttCallbackImpl implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable throwable) {
-
+        log.error("Connection to MQTT Broker has been lost");
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(name = "current_location")
 @JsonDeserialize(using = TrolleyDeserializer.class)
 @Data
-public class Trolley extends Auditable {
+public class Trolley {
 
     @Id
     @Column(name = "board_nr")
