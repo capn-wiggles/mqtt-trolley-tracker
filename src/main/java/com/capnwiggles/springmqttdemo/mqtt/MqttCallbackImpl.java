@@ -29,10 +29,7 @@ public class MqttCallbackImpl implements MqttCallback {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        log.info("[" + s + "]: " + mqttMessage.toString());
-
-        Trolley trolley = new Trolley();
-        trolley = objectMapper.readValue(mqttMessage.toString(), Trolley.class);
+        Trolley trolley = objectMapper.readValue(mqttMessage.toString(), Trolley.class);
 
         currentLocationService.saveTelemetry(trolley);
     }

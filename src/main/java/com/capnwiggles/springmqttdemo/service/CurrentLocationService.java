@@ -5,8 +5,6 @@ import com.capnwiggles.springmqttdemo.repository.CurrentLocationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,8 +20,15 @@ public class CurrentLocationService {
     }
 
     public List<Trolley> findAll() {
-        log.info(repository.findAll().toString());
         return repository.findAll();
+    }
+
+    public Trolley findByBoard(Integer board) {
+        return repository.findByBoard(board);
+    }
+
+    public List<Trolley> findByRoute(Integer route) {
+        return repository.findByRoute(route);
     }
 
     public void deleteAll(List<Trolley> trolleys) {

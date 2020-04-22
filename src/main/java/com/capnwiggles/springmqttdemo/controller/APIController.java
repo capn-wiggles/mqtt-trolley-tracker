@@ -5,10 +5,8 @@ import com.capnwiggles.springmqttdemo.service.CurrentLocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +19,19 @@ public class APIController {
 
     @GetMapping(value = "/trolleys", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Trolley> getAllTrolleys() {
-        return service.findAll();
+    public ResponseEntity<List<Trolley>> getAllTrolleys() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
+    @GetMapping(value = "/trolleys/{board}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Trolley> getTrolleyByBoard(@PathVariable("board") Integer board) {
+        return ResponseEntity.ok(service.findByBoard(board));
+    }
+
+    @GetMapping(value = "/routes/{route}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Trolley>> getAllTrolleysByRoute(@PathVariable("route") Integer route) {
+        return ResponseEntity.ok(service.findByRoute(route));
     }
 }
