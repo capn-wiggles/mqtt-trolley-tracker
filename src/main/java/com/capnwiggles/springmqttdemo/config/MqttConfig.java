@@ -1,12 +1,20 @@
 package com.capnwiggles.springmqttdemo.config;
 
-import lombok.extern.slf4j.Slf4j;
-import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.IMqttAsyncClient;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @PropertySource("classpath:mqtt.properties")
@@ -44,7 +52,6 @@ public class MqttConfig {
 
     @Bean
     public IMqttAsyncClient client(@Value("${mqtt.config.URI}") String URI,
-                                   MqttConnectOptions options,
                                    MqttCallback callback, MqttClientPersistence persistence) {
 
         try {

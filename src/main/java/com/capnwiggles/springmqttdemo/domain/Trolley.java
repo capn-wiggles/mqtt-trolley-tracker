@@ -2,13 +2,20 @@ package com.capnwiggles.springmqttdemo.domain;
 
 import com.capnwiggles.springmqttdemo.domain.deserializer.TrolleyDeserializer;
 import com.capnwiggles.springmqttdemo.domain.serializer.TimestampSerializer;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -28,7 +35,7 @@ public class Trolley {
     private double longitude;
 
     private Integer speed;
-
+    
     private Integer direction;
 
     @JsonSerialize(using= TimestampSerializer.class)

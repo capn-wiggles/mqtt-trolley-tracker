@@ -2,9 +2,9 @@ package com.capnwiggles.springmqttdemo.controller;
 
 import com.capnwiggles.springmqttdemo.service.CurrentLocationService;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,8 @@ public class STOMPController {
 
     @MessageMapping("/trolley-telemetry")
     @SendTo("/topic/trolleys")
-    public String allTrolleys() throws JsonProcessingException {
+    @SneakyThrows
+    public String allTrolleys() {
         String trolleysSerialized = mapper.writeValueAsString(service.findAll());
         return trolleysSerialized;
     }
