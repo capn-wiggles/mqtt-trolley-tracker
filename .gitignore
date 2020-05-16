@@ -61,4 +61,10 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
-paho*
+
+# Mqtt Client Persistence creates .lck files for each connection
+mqtt_locks
+
+# docker compose depends_on not working properly, ignore for now
+Dockerfile
+docker-compose.yml
